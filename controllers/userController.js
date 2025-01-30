@@ -1,8 +1,5 @@
-import User from "../models/userModel.js";
+import User from "../models/User.js";
 
-// @desc    Get all users
-// @route   GET /api/users
-// @access  Private/Admin
 export const getUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -12,9 +9,6 @@ export const getUsers = async (req, res) => {
   }
 };
 
-// @desc    Get single user
-// @route   GET /api/users/:id
-// @access  Private/Admin
 export const getUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -27,9 +21,6 @@ export const getUser = async (req, res) => {
   }
 };
 
-// @desc    Create user
-// @route   POST /api/users
-// @access  Public
 export const createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
@@ -39,9 +30,6 @@ export const createUser = async (req, res) => {
   }
 };
 
-// @desc    Update user
-// @route   PUT /api/users/:id
-// @access  Private/Admin
 export const updateUser = async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
@@ -57,9 +45,6 @@ export const updateUser = async (req, res) => {
   }
 };
 
-// @desc    Delete user
-// @route   DELETE /api/users/:id
-// @access  Private/Admin
 export const deleteUser = async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);

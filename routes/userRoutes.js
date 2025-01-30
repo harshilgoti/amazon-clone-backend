@@ -6,11 +6,19 @@ import {
   updateUser,
   deleteUser,
 } from "../controllers/userController.js";
+import { protect, authorize } from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.route("/").get(getUsers).post(createUser);
+router
+  .route("/")
+  .get(protect, authorize("admin"), getUsers)
+  .post(protect, authorize("admin"), createUser);
 
-router.route("/:id").get(getUser).put(updateUser).delete(deleteUser);
+router
+  .route("/:id")
+  .get(protect, getUser)
+  .put(protect, updateUser)
+  .delete(protect, authorize("admin"), deleteUser);
 
 export default router;
